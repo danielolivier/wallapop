@@ -1,0 +1,17 @@
+$pantone: (
+  medium-spring-green: #2f9989,
+  acadia: #eceff1,
+  hoki: #607d8b,
+  white: #ffffff,
+  black: #000000,
+);
+
+$color: (
+  primary: map-get($pantone, medium-spring-green),
+  secondary: map-get($pantone, acadia),
+  tertiary: map-get($pantone, hoki),
+  background-primary: map-get($pantone, white),
+  dark-primary: map-get($pantone, black),
+);
+
+$color: map-merge($color, $pantone);

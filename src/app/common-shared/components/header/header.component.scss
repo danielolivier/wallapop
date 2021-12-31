@@ -1,0 +1,27 @@
+@import 'variables/_variables-master';
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 75px;
+  display: flex;
+  flex-direction: row;
+  z-index: 2;
+  border-bottom: 2px solid rgba(color(tertiary), 0.1);
+  background-color: color(white);
+  padding: 0 32px;
+
+  &__home {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    &-icon {
+      height: 50px;
+      width: 50px;
+      border-radius: 10px;
+    }
+  }
+}

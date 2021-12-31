@@ -1,0 +1,36 @@
+<div class="home">
+  <div class="home__header">
+    <div class="home__header-description">
+      <span>
+        {{ 'HOME.description' | translate }}
+      </span>
+    </div>
+    <div class="home__header-title">
+      <span>
+        {{ 'HOME.title' | translate }}
+      </span>
+    </div>
+  </div>
+  <div class="home__content">
+    <ng-container *ngFor="let item of items?.items | slice: 0:max">
+      <div>
+        <img src="{{ item.image }}" alt="{{ item.title }}" />
+        <div>
+          <div>
+            <span>{{ item.price | currency: 'EUR' }} EUR</span>
+          </div>
+          <div>
+            <span>{{ item.title }}</span>
+          </div>
+          <div>
+            <span>{{ item.description }}</span>
+          </div>
+          <div>
+            <span>{{ item.email }}</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <button (click)="toggle()"></button>
+  </div>
+</div>

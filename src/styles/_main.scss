@@ -1,0 +1,7 @@
+/***************************************************************************
+    ! Import all the master files from each folder.
+    ! Name the master file with '__' double underscore and partials with '_' single underscore.
+    ! Don't write code|style here and master files, it's only for importing the partials.
+***************************************************************************/
+@import './base/_base-master';
+@import './variables/_variables-master';
