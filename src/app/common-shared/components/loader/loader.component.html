@@ -1,0 +1,12 @@
+<div
+  class="spinner"
+  [ngClass]="{
+    spinner_large: size === 'large',
+    spinner_medium: size === 'medium',
+    spinner_small: size === 'small'
+  }"
+>
+  <span class="spinner__text spinner__text" *ngIf="detail">{{
+    detail | translate
+  }}</span>
+</div>

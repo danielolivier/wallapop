@@ -1,1 +1,12 @@
-<p>button works!</p>
+<button
+  class="btn"
+  [disabled]="disabled"
+  (click)="clicked.emit()"
+  [ngClass]="{ btn_loading: loading }"
+>
+  <ng-container *ngIf="icon">
+    <fa-icon class="btn__icon" [icon]="icon"></fa-icon>
+  </ng-container>
+  <span class="btn__content"><ng-content></ng-content></span>
+  <app-loader *ngIf="loading" [size]="'medium'"></app-loader>
+</button>

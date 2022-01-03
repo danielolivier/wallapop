@@ -17,11 +17,29 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    cursor: pointer;
     &-icon {
       height: 50px;
       width: 50px;
       border-radius: 10px;
+      cursor: pointer;
+    }
+  }
+
+  &__langs {
+    cursor: pointer;
+    font-size: font-size(label);
+    color: color(tertiary);
+    span {
+      padding: 5px;
+      &:first-child {
+        border-right: 2px solid color(secondary);
+      }
+    }
+    &-active {
+      color: color(primary);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
   }
 }

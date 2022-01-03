@@ -1,0 +1,21 @@
+<ng-container *ngIf="item">
+  <div class="item-card" (click)="itemClicked.emit()">
+    <div class="item-card__image">
+      <img src="{{ item.image }}" alt="{{ item.title }}" />
+    </div>
+    <div class="item-card__content">
+      <div class="item-card__content-price">
+        <span>{{ item.price | currency: 'EUR' }} EUR</span>
+      </div>
+      <div class="item-card__content-title">
+        <span>{{ item.title }}</span>
+      </div>
+      <div class="item-card__content-description">
+        <span>{{ item.description }}</span>
+      </div>
+      <div class="item-card__content-email">
+        <span>{{ item.email }}</span>
+      </div>
+    </div>
+  </div>
+</ng-container>

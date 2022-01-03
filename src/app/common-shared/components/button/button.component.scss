@@ -1,0 +1,42 @@
+@import 'variables/_variables-master';
+
+.btn {
+  $root: &;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 24px;
+  color: color(white);
+  font-size: font-size(button);
+  line-height: 24px;
+  border-radius: 29px;
+  border: 2px solid color(primary);
+  background-color: color(primary);
+  cursor: pointer;
+  &:disabled {
+    color: color(quaternary);
+    background-color: rgba(color(tertiary), 0.1);
+    border-color: transparent;
+    pointer-events: none;
+  }
+  &__content {
+    display: flex;
+    flex-flow: row wrap;
+    position: relative;
+    width: 100%;
+    margin-bottom: -1px;
+    margin-left: 10px;
+    font-weight: 600;
+  }
+  &_loading {
+    #{$root}__icon,
+    #{$root}__content {
+      opacity: 0;
+    }
+  }
+}
+:host {
+  display: inline-flex;
+  align-self: flex-start;
+}

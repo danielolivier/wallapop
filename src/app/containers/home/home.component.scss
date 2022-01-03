@@ -3,7 +3,22 @@
 .home {
   background-color: color(secondary);
   width: 100%;
-  padding: 100px 30px;
+  min-height: 100vh;
+  padding: 75px 0;
+  &__sort {
+    cursor: pointer;
+    color: color(tertiary);
+    padding: 10px 30px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid color(tertiary);
+    &-icon {
+      margin-right: 10px;
+    }
+    &-chosen {
+      color: color(primary);
+      font-weight: 600;
+    }
+  }
   &__header {
     display: flex;
     flex-direction: column;
@@ -23,6 +38,17 @@
     }
   }
   &__content {
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    position: relative;
     margin-top: 40px;
+    padding: 0 30px;
+  }
+  &__search {
+    display: flex;
+    justify-content: center;
+    padding: 25px 0;
   }
 }

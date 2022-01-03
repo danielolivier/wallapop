@@ -2,5 +2,12 @@
   "HOME": {
     "description": "WALLAPOP, la plataforma líder de compraventa de productos de segunda mano",
     "title": "¿Qué estás buscando hoy?"
+  },
+  "SHARED": {
+    "sort": "Ordenar por: ",
+    "view_more": "Ver más",
+    "title": "Título",
+    "description": "Descripción",
+    "price": "Precio"
   }
 }

@@ -10,9 +10,11 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader'
 import { CommonSharedModule } from './common-shared/common-shared.module'
 
 import { HomeComponent } from './containers/home/home.component'
+import { ItemCardComponent } from './components/item-card/item-card.component'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, ItemCardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -27,6 +29,7 @@ import { HomeComponent } from './containers/home/home.component'
         deps: [HttpClient],
       },
     }),
+    FontAwesomeModule,
   ],
   providers: [AppRoutingModule],
   bootstrap: [AppComponent],

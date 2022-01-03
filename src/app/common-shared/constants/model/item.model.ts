@@ -9,3 +9,5 @@ export class Item {
   email?: string
   image?: string
 }
+
+export type ItemProperty = 'title' | 'description' | 'price' | 'email' | 'image'

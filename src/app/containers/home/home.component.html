@@ -1,4 +1,11 @@
-<div class="home">
+<div class="home" #scroll>
+  <div class="home__sort" (click)="openSortModal()">
+    <fa-icon class="home__sort-icon" [icon]="sortIcon"></fa-icon>
+    <span>{{ 'SHARED.sort' | translate }}</span>
+    <span class="home__sort-chosen">{{
+      'SHARED.' + sortType | translate
+    }}</span>
+  </div>
   <div class="home__header">
     <div class="home__header-description">
       <span>
@@ -11,26 +18,19 @@
       </span>
     </div>
   </div>
-  <div class="home__content">
-    <ng-container *ngFor="let item of items?.items | slice: 0:max">
-      <div>
-        <img src="{{ item.image }}" alt="{{ item.title }}" />
-        <div>
-          <div>
-            <span>{{ item.price | currency: 'EUR' }} EUR</span>
-          </div>
-          <div>
-            <span>{{ item.title }}</span>
-          </div>
-          <div>
-            <span>{{ item.description }}</span>
-          </div>
-          <div>
-            <span>{{ item.email }}</span>
-          </div>
-        </div>
-      </div>
-    </ng-container>
-    <button (click)="toggle()"></button>
-  </div>
+  <ng-container *ngIf="items?.items; else error">
+    <div class="home__content">
+      <ng-container *ngFor="let item of items?.items | slice: 0:max">
+        <app-item-card [item]="item"></app-item-card>
+      </ng-container>
+    </div>
+    <div class="home__search" *ngIf="(items?.items)!.length > max">
+      <app-button [icon]="plusIcon" [loading]="loading" (clicked)="toggle()">
+        {{ 'SHARED.view_more' | translate }}
+      </app-button>
+    </div>
+  </ng-container>
+  <ng-template #error>
+    <!-- TODO -->
+  </ng-template>
 </div>
