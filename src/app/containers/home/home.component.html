@@ -1,10 +1,64 @@
-<div class="home" #scroll>
-  <div class="home__sort" (click)="openSortModal()">
-    <fa-icon class="home__sort-icon" [icon]="sortIcon"></fa-icon>
-    <span>{{ 'SHARED.sort' | translate }}</span>
-    <span class="home__sort-chosen">{{
-      'SHARED.' + sortType | translate
-    }}</span>
+<div *ngIf="items?.items; else errorNoData" class="home">
+  <div class="home__sort">
+    <div
+      class="home__sort-wrapper"
+      (click)="toggleSort = !toggleSort"
+      #sortHeader
+    >
+      <fa-icon class="home__sort-icon" [icon]="icons.sortIcon"></fa-icon>
+      <span>{{ 'SHARED.sort' | translate }}</span>
+      <span class="home__sort-chosen">{{
+        sortType ? ('SHARED.' + sortType | translate) : ''
+      }}</span>
+    </div>
+    <div *ngIf="toggleSort" class="home__sort-options" #sortOptions>
+      <h6>{{ 'SHARED.sort' | translate }}</h6>
+      <div
+        class="home__sort-row"
+        [ngClass]="{ home__sort_active: sortType === 'title' }"
+        (click)="sort('title')"
+      >
+        <fa-icon class="home__sort-icon" [icon]="icons.title"></fa-icon>
+        <span>{{ 'SHARED.title' | translate }}</span>
+      </div>
+      <div
+        class="home__sort-row"
+        [ngClass]="{ home__sort_active: sortType === 'description' }"
+        (click)="sort('description')"
+      >
+        <fa-icon class="home__sort-icon" [icon]="icons.description"></fa-icon>
+        <span>{{ 'SHARED.description' | translate }}</span>
+      </div>
+      <div
+        class="home__sort-row"
+        [ngClass]="{ home__sort_active: sortType === 'price' && !reverse }"
+        (click)="sort('price')"
+      >
+        <fa-icon class="home__sort-icon" [icon]="icons.arrowUp"></fa-icon>
+        <span>{{ 'HOME.cheap_to_expensive' | translate }}</span>
+      </div>
+      <div
+        class="home__sort-row"
+        [ngClass]="{ home__sort_active: sortType === 'price' && reverse }"
+        (click)="sort('price', true)"
+      >
+        <fa-icon class="home__sort-icon" [icon]="icons.arrowDown"></fa-icon>
+        <span>{{ 'HOME.expensive_to_cheap' | translate }}</span>
+      </div>
+      <div
+        class="home__sort-row"
+        [ngClass]="{ home__sort_active: sortType === 'email' }"
+        (click)="sort('email')"
+      >
+        <fa-icon class="home__sort-icon" [icon]="icons.email"></fa-icon>
+        <span>{{ 'SHARED.email' | translate }}</span>
+      </div>
+      <div class="home__sort-row">
+        <app-button [variant]="'text'" (clicked)="toggleSort = false">{{
+          'SHARED.cancel' | translate
+        }}</app-button>
+      </div>
+    </div>
   </div>
   <div class="home__header">
     <div class="home__header-description">
@@ -18,19 +72,31 @@
       </span>
     </div>
   </div>
-  <ng-container *ngIf="items?.items; else error">
+  <ng-container *ngIf="items?.items?.length && !mainLoading">
     <div class="home__content">
       <ng-container *ngFor="let item of items?.items | slice: 0:max">
-        <app-item-card [item]="item"></app-item-card>
+        <app-item-card
+          [item]="item"
+          (favouriteAction)="handleFavouriteAction($event)"
+        ></app-item-card>
       </ng-container>
     </div>
     <div class="home__search" *ngIf="(items?.items)!.length > max">
-      <app-button [icon]="plusIcon" [loading]="loading" (clicked)="toggle()">
+      <app-button
+        [icon]="icons.plusIcon"
+        [loading]="loading"
+        (clicked)="toggle()"
+      >
         {{ 'SHARED.view_more' | translate }}
       </app-button>
     </div>
   </ng-container>
-  <ng-template #error>
-    <!-- TODO -->
-  </ng-template>
+  <app-loader *ngIf="mainLoading" [size]="'large'"></app-loader>
 </div>
+
+<ng-template #errorNoData>
+  <div class="home__no-data">
+    <span>{{ 'SHARED.error_no_data' | translate }}</span>
+    <img src="assets/images/no_data.png" alt="No data image" />
+  </div>
+</ng-template>

@@ -1,5 +1,9 @@
 export class ItemList {
   items?: Item[]
+
+  constructor() {
+    this.items = []
+  }
 }
 
 export class Item {
@@ -8,6 +12,7 @@ export class Item {
   price?: number
   email?: string
   image?: string
+  favourite?: boolean = false
 }
 
 export type ItemProperty = 'title' | 'description' | 'price' | 'email' | 'image'

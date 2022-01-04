@@ -1,0 +1,18 @@
+<div class="input">
+  <label class="input__label">
+    <fa-icon [icon]="icons.searchIcon"></fa-icon>
+  </label>
+  <input
+    value="{{ value }}"
+    [placeholder]="placeholder"
+    [ngModel]="value"
+    (ngModelChange)="onValueChange($event)"
+    class="input__field"
+  />
+  <fa-icon
+    class="input__delete"
+    *ngIf="showRemoveButton"
+    [icon]="icons.delete"
+    (click)="resetValue()"
+  ></fa-icon>
+</div>

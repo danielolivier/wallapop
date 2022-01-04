@@ -9,6 +9,7 @@ import {
   QueryList,
   ViewChildren,
 } from '@angular/core'
+import { faBackspace, faSearch } from '@fortawesome/free-solid-svg-icons'
 import { ClearAllSetTimeouts } from '../../utility/timeout.utility'
 
 @Component({
@@ -29,6 +30,11 @@ export class InputSearchComponent implements OnInit, OnDestroy {
   val = ''
   focus = false
   clearTimeouts = new ClearAllSetTimeouts()
+  readonly icons = {
+    searchIcon: faSearch,
+    delete: faBackspace,
+  }
+  showRemoveButton: boolean = false
 
   @ViewChildren('input') input: QueryList<ElementRef> = new QueryList()
 
@@ -36,8 +42,9 @@ export class InputSearchComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {}
 
-  onValueChange(value: string): void {
-    this.value = value
+  onValueChange(value: any): void {
+    this.showRemoveButton = this.value === '' || this.value === undefined
+    this.showRemoveButton = this.value = value
   }
 
   setFocus(): void {
@@ -58,6 +65,13 @@ export class InputSearchComponent implements OnInit, OnDestroy {
       this.inputChange.emit(this.value.trim())
       this.value = ''
     }
+  }
+
+  resetValue(): void {
+    this.showRemoveButton = false
+    this.clearTimeouts.add = setTimeout(() => {
+      this.value = ''
+    }, 0)
   }
 
   ngOnDestroy(): void {

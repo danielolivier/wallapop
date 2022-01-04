@@ -1,6 +1,6 @@
 <div class="header">
   <div class="header__home">
-    <a routerLink="/">
+    <a [routerLink]="'/'">
       <img
         class="header__home-icon"
         src="assets/icons/wallapop-icon.png"
@@ -8,7 +8,17 @@
       />
     </a>
     <div class="header__search">
-      <app-input-search></app-input-search>
+      <app-input-search
+        [placeholder]="'SHARED.search_placeholder' | translate"
+      ></app-input-search>
+    </div>
+    <div
+      class="header__favourite"
+      [routerLink]="'/favourites'"
+      [routerLinkActive]="['header__favourite-active']"
+    >
+      <fa-icon [icon]="likeIconSolid"></fa-icon>
+      <span>{{ 'SHARED.favourites' | translate }}</span>
     </div>
     <div class="header__langs">
       <ng-container *ngFor="let lang of langs">

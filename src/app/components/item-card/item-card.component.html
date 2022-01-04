@@ -1,21 +1,49 @@
 <ng-container *ngIf="item">
-  <div class="item-card" (click)="itemClicked.emit()">
+  <div
+    class="item-card"
+    [ngClass]="{ 'item-card__custom-view': showFavouriteView }"
+  >
     <div class="item-card__image">
       <img src="{{ item.image }}" alt="{{ item.title }}" />
     </div>
     <div class="item-card__content">
-      <div class="item-card__content-price">
+      <div *ngIf="!showFavouriteView" class="item-card__content-price">
         <span>{{ item.price | currency: 'EUR' }} EUR</span>
       </div>
       <div class="item-card__content-title">
         <span>{{ item.title }}</span>
       </div>
-      <div class="item-card__content-description">
+      <div *ngIf="!showFavouriteView" class="item-card__content-description">
         <span>{{ item.description }}</span>
       </div>
-      <div class="item-card__content-email">
+      <div *ngIf="!showFavouriteView" class="item-card__content-email">
         <span>{{ item.email }}</span>
       </div>
+    </div>
+    <div
+      *ngIf="!showFavouriteView"
+      class="item-card__favourite"
+      [ngClass]="{ 'item-card__favourite-active': item.favourite }"
+      (click)="saveDeleteFavourite(item)"
+      [tooltip]="
+        !item.favourite
+          ? ('ITEM_CARD.add_favourite' | translate)
+          : ('ITEM_CARD.remove_favourite' | translate)
+      "
+    >
+      <fa-icon
+        *ngIf="!item.favourite"
+        [icon]="icons.likeIconOutlined"
+      ></fa-icon>
+      <fa-icon *ngIf="item.favourite" [icon]="icons.likeIcon"></fa-icon>
+    </div>
+    <div
+      *ngIf="showFavouriteView"
+      class="item-card__edit"
+      (click)="saveDeleteFavourite(item)"
+      [tooltip]="'ITEM_CARD.remove_favourite' | translate"
+    >
+      <fa-icon [icon]="icons.delete"></fa-icon>
     </div>
   </div>
 </ng-container>

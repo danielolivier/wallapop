@@ -2,7 +2,7 @@
   class="btn"
   [disabled]="disabled"
   (click)="clicked.emit()"
-  [ngClass]="{ btn_loading: loading }"
+  [ngClass]="{ btn__text: variant === 'text', btn_loading: loading }"
 >
   <ng-container *ngIf="icon">
     <fa-icon class="btn__icon" [icon]="icon"></fa-icon>

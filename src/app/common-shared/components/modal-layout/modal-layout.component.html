@@ -1,1 +1,31 @@
-<p>modal-layout works!</p>
+<div class="modal-layout">
+  <div class="modal-layout__header">
+    <button
+      class="modal-layout__close"
+      type="button"
+      aria-label="Cerrar"
+      (click)="onDecline()"
+    >
+      <fa-icon [icon]="icons.closeIcon"></fa-icon>
+    </button>
+  </div>
+  <div class="modal-layout__content">
+    <ng-content></ng-content>
+  </div>
+  <div class="modal-layout__footer">
+    <app-button
+      [icon]="icons.checkIcon"
+      [loading]="loading"
+      (click)="onConfirm()"
+    >
+      <span>
+        {{ 'SHARED.confirm' | translate }}
+      </span>
+    </app-button>
+    <app-button [variant]="'text'" (click)="onDecline()">
+      <span>
+        {{ 'SHARED.cancel' | translate }}
+      </span>
+    </app-button>
+  </div>
+</div>

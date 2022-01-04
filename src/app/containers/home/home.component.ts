@@ -1,11 +1,20 @@
 import {
   Component,
   ElementRef,
+  HostListener,
   OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core'
-import { faSearchPlus, faSort } from '@fortawesome/free-solid-svg-icons'
+import {
+  faArrowDown,
+  faArrowUp,
+  faCommentDots,
+  faEnvelope,
+  faHeading,
+  faSearchPlus,
+  faSort,
+} from '@fortawesome/free-solid-svg-icons'
 import {
   ItemList,
   Item,
@@ -23,36 +32,71 @@ import { ItemsService } from 'src/app/services/items.service'
 })
 export class HomeComponent implements OnInit, OnDestroy {
   subscriptions = new SubSink()
+  itemsSubscription = new SubSink()
   clearTimeouts = new ClearAllSetTimeouts()
   items: ItemList | undefined
   max: number = 5
-  plusIcon = faSearchPlus
-  sortIcon = faSort
-  loading = false
-  sortType: ItemProperty = 'title'
+  mainLoading: boolean = false
+  loading: boolean = false
+  sortType: ItemProperty | undefined
+  toggleSort: boolean = false
+  reverse: boolean = false
+  readonly icons = {
+    plusIcon: faSearchPlus,
+    sortIcon: faSort,
+    title: faHeading,
+    description: faCommentDots,
+    arrowUp: faArrowUp,
+    arrowDown: faArrowDown,
+    email: faEnvelope,
+  }
 
-  @ViewChild('scroll', { static: false }) private scrollContainer:
+  @ViewChild('sortHeader', { static: true }) sortHeader: ElementRef | undefined
+  @ViewChild('sortOptions', { static: false }) sortOptions:
     | ElementRef
     | undefined
 
   constructor(private itemsService: ItemsService) {}
 
   ngOnInit(): void {
-    this.subscriptions.sink = this.itemsService
+    this.subscriptions.sink = this.itemsService.items$.subscribe((items) => {
+      if (items?.items?.length) {
+        this.items = unfreeze(items)
+      } else {
+        this.initData()
+      }
+    })
+  }
+
+  initData(): void {
+    this.itemsSubscription.sink = this.itemsService
       .getItems()
       .subscribe((items: ItemList) => {
         this.items = unfreeze(items)
-        this.sort()
+        this.itemsSubscription.unsubscribe()
       })
   }
 
-  sort(type: ItemProperty = 'title'): void {
+  sort(type: ItemProperty = 'title', reverse: boolean = false): void {
+    this.mainLoading = true
+    this.toggleSort = false
     this.sortType = type
-    this.items?.items
-      ?.slice(0, this.max)
-      .sort((a: Item, b: Item) =>
+    if (type === 'price') {
+      this.reverse = reverse
+      this.clearTimeouts.add = setTimeout(() => {
+        this.items?.items?.sort((a: Item, b: Item) =>
+          !reverse ? a[type]! - b[type]! : b[type]! - a[type]!
+        )
+        this.mainLoading = false
+      }, 500)
+      return
+    }
+    this.clearTimeouts.add = setTimeout(() => {
+      this.items?.items?.sort((a: Item, b: Item) =>
         String(a[type])?.localeCompare(String(b[type]))
       )
+      this.mainLoading = false
+    }, 500)
   }
 
   toggle(): void {
@@ -60,21 +104,28 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.clearTimeouts.add = setTimeout(() => {
       this.max = this.max + 5
       this.loading = false
-      this.scrollToBottom()
     }, 300)
   }
 
-  scrollToBottom(): void {
-    if (this.scrollContainer) {
-      this.scrollContainer.nativeElement.scrollTop =
-        this.scrollContainer.nativeElement.scrollHeight
-    }
+  handleFavouriteAction(item: Item): void {
+    this.items?.items?.map((i) =>
+      i.title === item.title ? { ...i, favourite: item.favourite } : i
+    )
+    this.itemsService.items$.next(this.items)
   }
-
-  openSortModal(): void {}
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
     this.clearTimeouts.clearAll()
+  }
+
+  @HostListener('document:mousedown', ['$event'])
+  onGlobalClick(event: any): void {
+    if (
+      !this.sortOptions?.nativeElement.contains(event.target) &&
+      !this.sortHeader?.nativeElement.contains(event.target)
+    ) {
+      this.toggleSort = false
+    }
   }
 }

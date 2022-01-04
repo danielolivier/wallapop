@@ -1,0 +1,36 @@
+<div class="favourites">
+  <div
+    class="favourites__wrapper"
+    *ngIf="favourites?.length; else noFavourites"
+  >
+    <ng-container *ngFor="let item of favourites | slice: 0:max">
+      <app-item-card
+        [item]="item"
+        [showFavouriteView]="true"
+        (favouriteAction)="openModal(item)"
+      ></app-item-card>
+    </ng-container>
+  </div>
+  <ng-template #noFavourites>
+    <div class="favourites__no-data">
+      <span>
+        {{ 'FAVOURITES.no_favourites' | translate }}
+      </span>
+      <img src="assets/images/no_data.png" alt="no-data-image" />
+    </div>
+  </ng-template>
+</div>
+
+<ng-template #removeFavouriteModal>
+  <app-modal-layout
+    [loading]="loading"
+    (confirm)="onConfirm()"
+    (decline)="onDecline()"
+  >
+    <div class="remove_modal">
+      <span>
+        {{ 'FAVOURITES.remove_favourite_description' | translate }}
+      </span>
+    </div>
+  </app-modal-layout>
+</ng-template>

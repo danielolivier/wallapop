@@ -4,17 +4,54 @@
   background-color: color(secondary);
   width: 100%;
   min-height: 100vh;
-  padding: 75px 0;
+  padding: 75px 0 0;
   &__sort {
     cursor: pointer;
+    font-size: font-size(label);
     color: color(tertiary);
-    padding: 10px 30px;
     margin-bottom: 25px;
     border-bottom: 1px solid color(tertiary);
+    position: fixed;
+    width: 100%;
+    background-color: color(secondary);
+    z-index: 2;
+    &-wrapper {
+      padding: 10px 30px;
+    }
     &-icon {
       margin-right: 10px;
     }
     &-chosen {
+      color: color(primary);
+      font-weight: 600;
+    }
+    &-options {
+      position: absolute;
+      top: calc(100% + 5px);
+      left: 30px;
+      background-color: color(white);
+      border-radius: 10px;
+      padding: 15px;
+      z-index: 2;
+      min-width: 300px;
+      h6 {
+        color: color(black);
+        font-weight: 600;
+        border-bottom: 1px solid color(secondary);
+        padding-bottom: 15px;
+      }
+    }
+    &-row {
+      padding: 15px 0;
+      border-bottom: 1px solid color(secondary);
+      font-size: font-size(icon);
+      &:last-child {
+        text-align: right;
+        border-bottom: none !important;
+        padding: 15px 0 0 !important;
+      }
+    }
+    &_active {
       color: color(primary);
       font-weight: 600;
     }
@@ -24,7 +61,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-top: 70px;
     &-description {
+      color: color(tertiary);
       font-size: font-size(body-m);
       font-weight: 600;
       line-height: 10px;
@@ -39,7 +78,6 @@
   }
   &__content {
     display: flex;
-    flex-direction: row;
     flex-flow: row wrap;
     justify-content: space-around;
     position: relative;
@@ -50,5 +88,16 @@
     display: flex;
     justify-content: center;
     padding: 25px 0;
+  }
+  &__no-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 0 0;
+    min-height: 100vh;
+    background-color: color(secondary);
+    font-size: font-size(sub-l);
+    color: color(primary);
   }
 }

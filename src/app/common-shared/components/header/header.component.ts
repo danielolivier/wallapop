@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { TranslateService } from '@ngx-translate/core'
 
 @Component({
@@ -9,6 +10,7 @@ import { TranslateService } from '@ngx-translate/core'
 export class HeaderComponent implements OnInit {
   langs: string[] = []
   activeLang: string | undefined
+  likeIconSolid = faHeart
 
   constructor(private translate: TranslateService) {}
 

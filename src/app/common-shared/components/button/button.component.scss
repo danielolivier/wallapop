@@ -26,8 +26,10 @@
     position: relative;
     width: 100%;
     margin-bottom: -1px;
-    margin-left: 10px;
     font-weight: 600;
+  }
+  &__icon {
+    margin-right: 10px;
   }
   &_loading {
     #{$root}__icon,
@@ -35,8 +37,17 @@
       opacity: 0;
     }
   }
+  &__text {
+    border: none;
+    text-transform: capitalize;
+    color: color(tertiary);
+    font-family: font-family(tertiary);
+    letter-spacing: 0.2px;
+    padding: 0 17px;
+    background: inherit;
+    font-size: font-size(label);
+  }
 }
 :host {
   display: inline-flex;
-  align-self: flex-start;
 }

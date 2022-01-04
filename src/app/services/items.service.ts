@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs'
+import { BehaviorSubject, Observable } from 'rxjs'
 
 import { ItemList } from '../common-shared/constants/model/item.model'
 import { environment } from 'src/environments/environment'
@@ -9,6 +9,10 @@ import { environment } from 'src/environments/environment'
   providedIn: 'root',
 })
 export class ItemsService {
+  items$: BehaviorSubject<ItemList | undefined> = new BehaviorSubject<
+    ItemList | undefined
+  >(undefined)
+
   constructor(private http: HttpClient) {}
 
   getItems(): Observable<ItemList> {

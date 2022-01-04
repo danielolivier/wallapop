@@ -1,13 +1,29 @@
 {
   "HOME": {
     "description": "WALLAPOP, la plataforma líder de compraventa de productos de segunda mano",
-    "title": "¿Qué estás buscando hoy?"
+    "title": "¿Qué estás buscando hoy?",
+    "cheap_to_expensive": "De más barato a más caro",
+    "expensive_to_cheap": "De más caro a más barato"
   },
   "SHARED": {
     "sort": "Ordenar por: ",
     "view_more": "Ver más",
     "title": "Título",
     "description": "Descripción",
-    "price": "Precio"
+    "price": "Precio",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "email": "E-mail",
+    "search_placeholder": "Buscar productos",
+    "favourites": "Favoritos",
+    "error_no_data": "Hubo un problema en alguna parte, no se encontraron datos"
+  },
+  "ITEM_CARD": {
+    "add_favourite": "Añadir a favoritos",
+    "remove_favourite": "Eliminar de favoritos"
+  },
+  "FAVOURITES": {
+    "remove_favourite_description": "¿Estás seguro que deseas borrar el item de favoritos?",
+    "no_favourites": "No hay ningún producto/item guardado como favorito"
   }
 }

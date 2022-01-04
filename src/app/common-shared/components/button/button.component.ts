@@ -16,6 +16,7 @@ export class ButtonComponent {
   @Input() disabled: boolean = false
   @Input() icon: IconProp | undefined
   @Input() loading: boolean = false
+  @Input() variant: string | undefined
   @Output() clicked = new EventEmitter()
   @HostBinding('class.disabled') get t(): boolean {
     return this.disabled || this.loading

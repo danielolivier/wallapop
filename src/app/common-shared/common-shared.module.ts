@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { TranslateModule } from '@ngx-translate/core'
 
-import { HeaderComponent } from './components/header/header.component'
-import { ButtonComponent } from './components/button/button.component'
+import { FormsModule } from '@angular/forms'
+import { RouterModule } from '@angular/router'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { LoaderComponent } from './components/loader/loader.component'
+
+import { ButtonComponent } from './components/button/button.component'
+import { HeaderComponent } from './components/header/header.component'
 import { InputSearchComponent } from './components/input-search/input-search.component'
+import { LoaderComponent } from './components/loader/loader.component'
 import { ModalLayoutComponent } from './components/modal-layout/modal-layout.component'
 
 @NgModule({
@@ -17,10 +20,17 @@ import { ModalLayoutComponent } from './components/modal-layout/modal-layout.com
     InputSearchComponent,
     ModalLayoutComponent,
   ],
-  imports: [CommonModule, FontAwesomeModule, TranslateModule],
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
+    TranslateModule,
+    FormsModule,
+    RouterModule,
+  ],
   exports: [
     HeaderComponent,
     ButtonComponent,
+    LoaderComponent,
     InputSearchComponent,
     ModalLayoutComponent,
   ],

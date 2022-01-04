@@ -1,13 +1,29 @@
 {
   "HOME": {
     "description": "WALLAPOP, the leading platform for buying and selling second-hand products",
-    "title": "¿What are you looking for today?"
+    "title": "¿What are you looking for today?",
+    "cheap_to_expensive": "From cheapest to most expensive",
+    "expensive_to_cheap": "From most expensive to cheapest"
   },
   "SHARED": {
     "sort": "Sort by: ",
     "view_more": "View more",
     "title": "Title",
     "description": "Description",
-    "price": "Price"
+    "price": "Price",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "email": "Email",
+    "search_placeholder": "Search items",
+    "favourites": "Favourites",
+    "error_no_data": "There was a problem somewhere, no data was found"
+  },
+  "ITEM_CARD": {
+    "add_favourite": "Add to favourites",
+    "remove_favourite": "Remove from favourites"
+  },
+  "FAVOURITES": {
+    "remove_favourite_description": "Are you sure you want to delete item from favourites?",
+    "no_favourites": "There is no product/item saved in favourites"
   }
 }

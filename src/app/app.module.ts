@@ -5,16 +5,26 @@ import { HttpClient, HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { BsModalRef, ModalModule } from 'ngx-bootstrap/modal'
+import { TooltipModule } from 'ngx-bootstrap/tooltip'
+
 import { CommonSharedModule } from './common-shared/common-shared.module'
 
 import { HomeComponent } from './containers/home/home.component'
 import { ItemCardComponent } from './components/item-card/item-card.component'
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { FavouritesComponent } from './containers/favourites/favourites.component'
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ItemCardComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    ItemCardComponent,
+    FavouritesComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,8 +40,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
       },
     }),
     FontAwesomeModule,
+    NgbModule,
+    ModalModule.forRoot(),
+    TooltipModule.forRoot(),
   ],
-  providers: [AppRoutingModule],
+  providers: [AppRoutingModule, BsModalRef],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -6,17 +6,18 @@
   background-color: color(white);
   box-shadow: 0 0 2px 0 rgba(color(black), 0.1);
   transition: all 0.15s ease;
-  overflow: hidden;
   width: 300px;
   height: 500px;
   margin: 20px;
-  cursor: pointer;
+  &__custom-view {
+    height: 350px !important;
+  }
   &__image {
     padding: 15px;
     img {
       width: 100%;
       height: 275px;
-      object-fit: contain;
+      object-fit: cover;
       border-radius: 10px;
     }
   }
@@ -38,12 +39,33 @@
       -webkit-box-orient: vertical;
       text-align: justify;
       overflow: hidden;
+      min-height: 96px;
     }
     &-email {
       text-align: right;
       color: color(primary);
       padding: 5px 0;
       text-align: right;
+    }
+  }
+  &__favourite {
+    position: absolute;
+    bottom: 160px;
+    right: 20px;
+    font-size: font-size(sub-l);
+    cursor: pointer;
+    &-active,
+    &:hover {
+      color: red !important;
+    }
+  }
+  &__edit {
+    position: absolute;
+    right: 20px;
+    bottom: 15px;
+    cursor: pointer;
+    &:hover {
+      color: color(primary);
     }
   }
 }
