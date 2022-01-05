@@ -19,7 +19,7 @@
       [routerLinkActive]="['header__favourite-active']"
     >
       <fa-icon [icon]="likeIconSolid"></fa-icon>
-      <span>{{ 'SHARED.favourites' | translate }}</span>
+      <span *ngIf="!mobileClass">{{ 'SHARED.favourites' | translate }}</span>
     </div>
     <div class="header__langs">
       <ng-container *ngFor="let lang of langs">

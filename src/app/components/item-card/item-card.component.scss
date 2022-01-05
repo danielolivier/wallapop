@@ -1,4 +1,5 @@
 @import 'variables/_variables-master';
+@import 'base/_base-master';
 
 .item-card {
   position: relative;
@@ -9,6 +10,10 @@
   width: 300px;
   height: 500px;
   margin: 20px;
+  @media only screen and (max-width: responsive(mobile-small)) {
+    width: 280px;
+    margin: 20px auto;
+  }
   &__custom-view {
     height: 350px !important;
   }

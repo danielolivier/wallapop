@@ -24,6 +24,7 @@ export class FavouritesComponent implements OnInit, OnDestroy {
   items: ItemList | undefined
   favourites: Item[] | undefined
   subscriptions = new SubSink()
+  searchSubscription = new SubSink()
   max: number = 5
   modalRef: BsModalRef = new BsModalRef()
   clearAllTimeouts = new ClearAllSetTimeouts()
@@ -47,10 +48,14 @@ export class FavouritesComponent implements OnInit, OnDestroy {
           this.favourites = unfreeze(items).items?.filter(
             (i: Item) => i.favourite
           )
+          this.filterSearch()
         }
       }
     )
-    this.subscriptions.sink = this.itemsService.searchValue$.subscribe(
+  }
+
+  filterSearch(): void {
+    this.searchSubscription.sink = this.itemsService.searchValue$.subscribe(
       (value: string) => {
         this.mainLoading = true
         this.clearAllTimeouts.add = setTimeout(() => {
@@ -67,6 +72,7 @@ export class FavouritesComponent implements OnInit, OnDestroy {
           }
           this.mainLoading = false
         }, 300)
+        this.searchSubscription.unsubscribe()
       }
     )
   }

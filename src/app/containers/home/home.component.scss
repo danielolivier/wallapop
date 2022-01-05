@@ -1,10 +1,14 @@
 @import 'variables/_variables-master';
+@import 'base/_base-master';
 
 .home {
   background-color: color(secondary);
   width: 100%;
   min-height: 100vh;
   padding: 75px 0 0;
+  @media only screen and (max-width: responsive(mobile-large)) {
+    padding: 65px 0 0;
+  }
   &__sort {
     cursor: pointer;
     font-size: font-size(label);
@@ -34,6 +38,10 @@
       padding: 15px;
       z-index: 2;
       min-width: 300px;
+      @media only screen and (max-width: responsive(mobile-large)) {
+        left: 10px;
+        min-width: 275px;
+      }
       h6 {
         color: color(black);
         font-weight: 600;
@@ -67,6 +75,12 @@
       font-size: font-size(body-m);
       font-weight: 600;
       line-height: 10px;
+      @media only screen and (max-width: responsive(mobile-large)) {
+        letter-spacing: 1.2px;
+        line-height: 20px;
+        font-size: font-size(body-s);
+        text-align: center;
+      }
     }
     &-title {
       font-family: font-family(secondary);
@@ -74,6 +88,13 @@
       font-weight: bolder;
       color: color(black);
       margin-top: 40px;
+      @media only screen and (max-width: responsive(mobile-large)) {
+        letter-spacing: 1.2px;
+        line-height: 25px;
+        font-size: font-size(sub-m);
+        text-align: center;
+        padding: 0 10px;
+      }
     }
   }
   &__content {
@@ -83,6 +104,9 @@
     position: relative;
     margin-top: 40px;
     padding: 0 30px;
+    @media only screen and (max-width: responsive(mobile-large)) {
+      margin-top: 15px;
+    }
   }
   &__search {
     display: flex;
@@ -99,6 +123,13 @@
     background-color: color(secondary);
     font-size: font-size(sub-l);
     color: color(primary);
+    @media only screen and (max-width: responsive(mobile-large)) {
+      font-size: font-size(sub-m);
+      padding: 25px 0 0;
+      img {
+        width: 300px;
+      }
+    }
   }
 }
 .not-found {
