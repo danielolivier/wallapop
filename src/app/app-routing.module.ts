@@ -20,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'not-found',
+    redirectTo: 'home', // TODO create a not-found page
   },
 ]
 

@@ -18,8 +18,8 @@ export class ModalLayoutComponent {
     checkIcon: faCheck,
   }
 
-  constructor(private location: PlatformLocation) {
-    this.location.onPopState(() => this.onDecline())
+  constructor(private _location: PlatformLocation) {
+    this._location.onPopState(() => this.onDecline())
   }
 
   onConfirm(): void {

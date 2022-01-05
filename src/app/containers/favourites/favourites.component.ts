@@ -6,13 +6,14 @@ import {
   ViewChild,
 } from '@angular/core'
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal'
+
 import {
   Item,
   ItemList,
 } from 'src/app/common-shared/constants/model/item.model'
+import { ClearAllSetTimeouts } from 'src/app/common-shared/utility/timeout.utility'
 import { unfreeze } from 'src/app/common-shared/utility/object.utility'
 import { SubSink } from 'src/app/common-shared/utility/subsink.utility'
-import { ClearAllSetTimeouts } from 'src/app/common-shared/utility/timeout.utility'
 import { ItemsService } from 'src/app/services/items.service'
 
 @Component({
@@ -30,14 +31,14 @@ export class FavouritesComponent implements OnInit, OnDestroy {
   clearAllTimeouts = new ClearAllSetTimeouts()
   mainLoading: boolean = false
   loading: boolean = false
-  selectedItem: Item = new Item()
+  selectedItem: Item | undefined
 
   @ViewChild('removeFavouriteModal', { static: false })
   removeFavouriteModal: TemplateRef<any> | undefined
 
   constructor(
     private itemsService: ItemsService,
-    private modalService: BsModalService
+    private _modalService: BsModalService
   ) {}
 
   ngOnInit(): void {
@@ -79,14 +80,14 @@ export class FavouritesComponent implements OnInit, OnDestroy {
 
   deleteFavourite(): void {
     this.items!.items![
-      this.items!.items!.findIndex((i) => i.title === this.selectedItem.title)
+      this.items!.items!.findIndex((i) => i.title === this.selectedItem?.title)
     ].favourite = false
     this.itemsService.items$.next(this.items)
   }
 
   openModal(item: Item): void {
     this.selectedItem = item
-    this.modalRef = this.modalService.show(
+    this.modalRef = this._modalService.show(
       this.removeFavouriteModal as TemplateRef<any>,
       {
         ignoreBackdropClick: false,

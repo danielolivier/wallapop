@@ -5,7 +5,3 @@ $responsive: (
   mobile: 480px,
   mobile-small: 300px,
 );
-
-@function responsive($name) {
-  @return map-get($responsive, $name);
-}

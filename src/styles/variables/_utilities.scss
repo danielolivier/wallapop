@@ -16,22 +16,14 @@
   @return map-get($font-size, $name);
 }
 
+@function responsive($name) {
+  @return map-get($responsive, $name);
+}
+
 // ----
 // rem mixins
 // ----
 $rem-base: 16px !default;
-// list-separator polyfill by Hugo Giraudel (https://sass-compatibility.github.io/#list_separator_function)
-@function rem-separator($list) {
-  @if function-exists('list-separator') ==true {
-    @return list-separator($list);
-  }
-  $test-list: ();
-  @each $item in $list {
-    $test-list: append($test-list, $item, space);
-  }
-  @return if($test-list==$list, space, comma);
-}
-
 @mixin rem-base($zoom: 100%) {
   font-size: math.div($zoom, 16px) * $rem-base;
 }
@@ -80,9 +72,6 @@ $rem-base: 16px !default;
   }
 }
 
-// $base-font-size: 100% !default;
-// //$base-line-height is 24px while $base-font-size is 16px
-// $base-line-height: 150%;
 // It strips the unit of measure and returns it
 @function strip-unit($num) {
   @return math.div($num, $num * 0 + 1);

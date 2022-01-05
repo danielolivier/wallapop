@@ -35,4 +35,15 @@
   padding: 15px 40px 40px;
   color: color(primary);
   font-size: font-size(sub-l);
+  @media only screen and (max-width: responsive(mobile-large)) {
+    font-size: font-size(sub-m);
+    text-align: center;
+    padding: 0 15px 25px;
+  }
+}
+
+::ng-deep {
+  .modal-dialog {
+    margin: auto !important;
+  }
 }

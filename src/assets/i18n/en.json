@@ -6,6 +6,14 @@
     "expensive_to_cheap": "From most expensive to cheapest",
     "no_data_found": "No data was found"
   },
+  "FAVOURITES": {
+    "remove_favourite_description": "Are you sure you want to delete item from favourites?",
+    "no_favourites": "There is no product/item saved in favourites"
+  },
+  "ITEM_CARD": {
+    "add_favourite": "Add to favourites",
+    "remove_favourite": "Remove from favourites"
+  },
   "SHARED": {
     "sort": "Sort by: ",
     "view_more": "View more",
@@ -18,13 +26,5 @@
     "search_placeholder": "Search items",
     "favourites": "Favourites",
     "error_no_data": "There was a problem somewhere, no data was found"
-  },
-  "ITEM_CARD": {
-    "add_favourite": "Add to favourites",
-    "remove_favourite": "Remove from favourites"
-  },
-  "FAVOURITES": {
-    "remove_favourite_description": "Are you sure you want to delete item from favourites?",
-    "no_favourites": "There is no product/item saved in favourites"
   }
 }

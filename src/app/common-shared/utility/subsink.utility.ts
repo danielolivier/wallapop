@@ -1,6 +1,6 @@
 /**
  * Subscription sink that holds Observable subscriptions
- * until you call unsubscribe on it in ngOnDestroy.
+ * until you call unsubscribe on its ngOnDestroy.
  */
 
 const isFunction = (fn: any) => typeof fn === 'function'

@@ -6,6 +6,14 @@
     "expensive_to_cheap": "De más caro a más barato",
     "no_data_found": "No se encontraron datos"
   },
+  "FAVOURITES": {
+    "remove_favourite_description": "¿Estás seguro que deseas borrar el item de favoritos?",
+    "no_favourites": "No hay ningún producto/item guardado como favorito"
+  },
+  "ITEM_CARD": {
+    "add_favourite": "Añadir a favoritos",
+    "remove_favourite": "Eliminar de favoritos"
+  },
   "SHARED": {
     "sort": "Ordenar por: ",
     "view_more": "Ver más",
@@ -18,13 +26,5 @@
     "search_placeholder": "Buscar productos",
     "favourites": "Favoritos",
     "error_no_data": "Hubo un problema en alguna parte, no se encontraron datos"
-  },
-  "ITEM_CARD": {
-    "add_favourite": "Añadir a favoritos",
-    "remove_favourite": "Eliminar de favoritos"
-  },
-  "FAVOURITES": {
-    "remove_favourite_description": "¿Estás seguro que deseas borrar el item de favoritos?",
-    "no_favourites": "No hay ningún producto/item guardado como favorito"
   }
 }

@@ -5,6 +5,9 @@
   flex-direction: column;
   height: 100%;
   padding: 30px;
+  @media only screen and (max-width: responsive(mobile-large)) {
+    padding: 15px;
+  }
   &__header {
     display: flex;
     flex-direction: row;

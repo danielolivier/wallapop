@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { TranslateService } from '@ngx-translate/core'
+
 import { ItemsService } from 'src/app/services/items.service'
 
 @Component({
@@ -15,7 +16,7 @@ export class HeaderComponent implements OnInit {
   mobileClass: boolean = false
 
   constructor(
-    private translate: TranslateService,
+    private _translate: TranslateService,
     private itemsService: ItemsService
   ) {
     if (window.innerWidth < 700) {
@@ -24,13 +25,13 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.langs = this.translate.getLangs()
-    this.activeLang = this.translate.currentLang
+    this.langs = this._translate.getLangs()
+    this.activeLang = this._translate.currentLang
   }
 
   setLang(lang: string): void {
     this.activeLang = lang
-    this.translate.use(lang)
+    this._translate.use(lang)
   }
 
   onInputChange(value: string): void {

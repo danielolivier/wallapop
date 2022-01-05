@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core'
+
 import { LoaderSize } from '../../constants/model/loader.model'
 
 @Component({
@@ -9,6 +10,4 @@ import { LoaderSize } from '../../constants/model/loader.model'
 export class LoaderComponent {
   @Input() detail = ''
   @Input() size: LoaderSize = 'large'
-
-  constructor() {}
 }

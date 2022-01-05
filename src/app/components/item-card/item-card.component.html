@@ -26,7 +26,9 @@
       [ngClass]="{ 'item-card__favourite-active': item.favourite }"
       (click)="saveDeleteFavourite(item)"
       [tooltip]="
-        !item.favourite
+        !mobileClass
+          ? ''
+          : !item.favourite
           ? ('ITEM_CARD.add_favourite' | translate)
           : ('ITEM_CARD.remove_favourite' | translate)
       "
@@ -40,8 +42,8 @@
     <div
       *ngIf="showFavouriteView"
       class="item-card__edit"
-      (click)="saveDeleteFavourite(item)"
-      [tooltip]="'ITEM_CARD.remove_favourite' | translate"
+      (click)="saveDeleteFavourite(item, true)"
+      [tooltip]="!mobileClass ? ('ITEM_CARD.remove_favourite' | translate) : ''"
     >
       <fa-icon [icon]="icons.delete"></fa-icon>
     </div>

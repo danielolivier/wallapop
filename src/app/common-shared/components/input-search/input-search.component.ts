@@ -11,6 +11,7 @@ import {
 } from '@angular/core'
 import { NavigationEnd, Router } from '@angular/router'
 import { faBackspace, faSearch } from '@fortawesome/free-solid-svg-icons'
+
 import { ClearAllSetTimeouts } from '../../utility/timeout.utility'
 
 @Component({
@@ -18,7 +19,7 @@ import { ClearAllSetTimeouts } from '../../utility/timeout.utility'
   templateUrl: './input-search.component.html',
   styleUrls: ['./input-search.component.scss'],
 })
-export class InputSearchComponent implements OnInit, OnDestroy {
+export class InputSearchComponent implements OnDestroy {
   @Input() placeholder = ''
   @Input()
   get value(): string {
@@ -37,10 +38,8 @@ export class InputSearchComponent implements OnInit, OnDestroy {
   }
   showRemoveButton: boolean = false
 
-  @ViewChildren('input') input: QueryList<ElementRef> = new QueryList()
-
-  constructor(private router: Router) {
-    router.events.subscribe((val) => {
+  constructor(private _router: Router) {
+    _router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         this.value = ''
         this.inputChange.emit('')
@@ -48,21 +47,9 @@ export class InputSearchComponent implements OnInit, OnDestroy {
     })
   }
 
-  ngOnInit(): void {}
-
   onValueChange(value: any): void {
     this.showRemoveButton = this.value !== '' || this.value !== undefined
     this.value = value
-  }
-
-  setFocus(): void {
-    this.focus = true
-  }
-
-  focusInput(): void {
-    this.clearTimeouts.add = setTimeout(() => {
-      this.input.first.nativeElement.focus()
-    }, 0)
   }
 
   handleKeyPress($event: any): void {
@@ -73,9 +60,6 @@ export class InputSearchComponent implements OnInit, OnDestroy {
   }
 
   handleSendClick(): void {
-    if (this.focus) {
-      this.focusInput()
-    }
     this.inputChange.emit(this.value?.trim())
   }
 

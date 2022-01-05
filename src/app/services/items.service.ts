@@ -14,10 +14,10 @@ export class ItemsService {
   >(undefined)
   searchValue$: BehaviorSubject<string> = new BehaviorSubject<string>('')
 
-  constructor(private http: HttpClient) {}
+  constructor(private _http: HttpClient) {}
 
   getItems(): Observable<ItemList> {
-    return this.http.get<ItemList>(
+    return this._http.get<ItemList>(
       `${environment.apiUrl.itemsService}/items.json`
     )
   }

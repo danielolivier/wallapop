@@ -15,6 +15,7 @@ import {
   faSearchPlus,
   faSort,
 } from '@fortawesome/free-solid-svg-icons'
+
 import {
   ItemList,
   Item,
