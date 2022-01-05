@@ -10,6 +10,7 @@
     <div class="header__search">
       <app-input-search
         [placeholder]="'SHARED.search_placeholder' | translate"
+        (inputChange)="onInputChange($event)"
       ></app-input-search>
     </div>
     <div

@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   itemsSubscription = new SubSink()
   clearTimeouts = new ClearAllSetTimeouts()
   items: ItemList | undefined
+  shownItems: Item[] | undefined
   max: number = 5
   mainLoading: boolean = false
   loading: boolean = false
@@ -62,10 +63,29 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscriptions.sink = this.itemsService.items$.subscribe((items) => {
       if (items?.items?.length) {
         this.items = unfreeze(items)
+        this.shownItems = unfreeze(items.items)
       } else {
         this.initData()
       }
     })
+    this.subscriptions.sink = this.itemsService.searchValue$.subscribe(
+      (value: string) => {
+        this.mainLoading = true
+        this.clearTimeouts.add = setTimeout(() => {
+          if (value === '' || value === undefined) {
+            this.shownItems = unfreeze(this.items?.items!)
+          }
+          if (this.items?.items) {
+            this.shownItems = this.items.items.filter((item) =>
+              JSON.stringify(Object.values(item))
+                .toLowerCase()
+                .includes(value.toLowerCase())
+            )
+          }
+          this.mainLoading = false
+        }, 300)
+      }
+    )
   }
 
   initData(): void {
@@ -73,6 +93,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       .getItems()
       .subscribe((items: ItemList) => {
         this.items = unfreeze(items)
+        this.shownItems = unfreeze(items?.items!)
         this.itemsSubscription.unsubscribe()
       })
   }
@@ -84,7 +105,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (type === 'price') {
       this.reverse = reverse
       this.clearTimeouts.add = setTimeout(() => {
-        this.items?.items?.sort((a: Item, b: Item) =>
+        this.shownItems?.sort((a: Item, b: Item) =>
           !reverse ? a[type]! - b[type]! : b[type]! - a[type]!
         )
         this.mainLoading = false
@@ -92,7 +113,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       return
     }
     this.clearTimeouts.add = setTimeout(() => {
-      this.items?.items?.sort((a: Item, b: Item) =>
+      this.shownItems?.sort((a: Item, b: Item) =>
         String(a[type])?.localeCompare(String(b[type]))
       )
       this.mainLoading = false
@@ -108,9 +129,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   handleFavouriteAction(item: Item): void {
-    this.items?.items?.map((i) =>
-      i.title === item.title ? { ...i, favourite: item.favourite } : i
-    )
+    this.items!.items![
+      this.items!.items!.findIndex((i) => i.title === item.title)
+    ].favourite = item.favourite
     this.itemsService.items$.next(this.items)
   }
 

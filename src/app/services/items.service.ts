@@ -12,6 +12,7 @@ export class ItemsService {
   items$: BehaviorSubject<ItemList | undefined> = new BehaviorSubject<
     ItemList | undefined
   >(undefined)
+  searchValue$: BehaviorSubject<string> = new BehaviorSubject<string>('')
 
   constructor(private http: HttpClient) {}
 

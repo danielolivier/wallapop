@@ -27,6 +27,7 @@ export class FavouritesComponent implements OnInit, OnDestroy {
   max: number = 5
   modalRef: BsModalRef = new BsModalRef()
   clearAllTimeouts = new ClearAllSetTimeouts()
+  mainLoading: boolean = false
   loading: boolean = false
   selectedItem: Item = new Item()
 
@@ -47,6 +48,25 @@ export class FavouritesComponent implements OnInit, OnDestroy {
             (i: Item) => i.favourite
           )
         }
+      }
+    )
+    this.subscriptions.sink = this.itemsService.searchValue$.subscribe(
+      (value: string) => {
+        this.mainLoading = true
+        this.clearAllTimeouts.add = setTimeout(() => {
+          if ((value === '' || value === undefined) && this.items?.items) {
+            this.favourites = unfreeze(this.items.items)
+          }
+          if (this.items?.items) {
+            this.favourites = this.items.items.filter(
+              (item) =>
+                JSON.stringify(Object.values(item))
+                  .toLowerCase()
+                  .includes(value.toLowerCase()) && item.favourite
+            )
+          }
+          this.mainLoading = false
+        }, 300)
       }
     )
   }

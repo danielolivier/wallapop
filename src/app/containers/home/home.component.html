@@ -72,16 +72,16 @@
       </span>
     </div>
   </div>
-  <ng-container *ngIf="items?.items?.length && !mainLoading">
+  <ng-container *ngIf="shownItems?.length && !mainLoading">
     <div class="home__content">
-      <ng-container *ngFor="let item of items?.items | slice: 0:max">
+      <ng-container *ngFor="let item of shownItems | slice: 0:max">
         <app-item-card
           [item]="item"
           (favouriteAction)="handleFavouriteAction($event)"
         ></app-item-card>
       </ng-container>
     </div>
-    <div class="home__search" *ngIf="(items?.items)!.length > max">
+    <div class="home__search" *ngIf="shownItems!.length > max">
       <app-button
         [icon]="icons.plusIcon"
         [loading]="loading"
@@ -89,6 +89,14 @@
       >
         {{ 'SHARED.view_more' | translate }}
       </app-button>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!shownItems?.length && !mainLoading">
+    <div class="home__no-data not-found">
+      <span>
+        {{ 'HOME.no_data_found' | translate }}
+      </span>
+      <img src="assets/images/no_data.png" alt="No data image" />
     </div>
   </ng-container>
   <app-loader *ngIf="mainLoading" [size]="'large'"></app-loader>

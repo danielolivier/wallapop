@@ -3,7 +3,8 @@
     "description": "WALLAPOP, the leading platform for buying and selling second-hand products",
     "title": "¿What are you looking for today?",
     "cheap_to_expensive": "From cheapest to most expensive",
-    "expensive_to_cheap": "From most expensive to cheapest"
+    "expensive_to_cheap": "From most expensive to cheapest",
+    "no_data_found": "No data was found"
   },
   "SHARED": {
     "sort": "Sort by: ",
