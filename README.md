@@ -23,4 +23,4 @@ Also the application has been deployed to a Firebase Hosting Server so you can a
 
 If not clone the project using `git clone https://github.com/danielolivier/wallapop.git`
 
-Go to downloaded project directory and run `npm run serve` or `ng serve` to run it locally. By default it will open port :4200 but feel free to use a custom one using --port flag.
+Go to downloaded project directory and run `npm install` and then `npm run serve` or `ng serve` to run it locally. By default it will open port :4200 but feel free to use a custom one using --port flag.
