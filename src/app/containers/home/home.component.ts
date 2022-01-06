@@ -133,12 +133,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.items!.items![
       this.items!.items!.findIndex((i) => i.title === item.title)
     ].favourite = item.favourite
-    this.itemsService.items$.next(this.items)
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.unsubscribe()
+    this.itemsService.items$.next(this.items)
     this.clearTimeouts.clearAll()
+    this.subscriptions.unsubscribe()
   }
 
   @HostListener('document:mousedown', ['$event'])

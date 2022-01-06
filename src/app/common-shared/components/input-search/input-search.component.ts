@@ -1,13 +1,9 @@
 import {
   Component,
-  ElementRef,
   EventEmitter,
   Input,
   OnDestroy,
-  OnInit,
   Output,
-  QueryList,
-  ViewChildren,
 } from '@angular/core'
 import { NavigationEnd, Router } from '@angular/router'
 import { faBackspace, faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -32,11 +28,11 @@ export class InputSearchComponent implements OnDestroy {
   val = ''
   focus = false
   clearTimeouts = new ClearAllSetTimeouts()
+  showRemoveButton: boolean = false
   readonly icons = {
     searchIcon: faSearch,
     delete: faBackspace,
   }
-  showRemoveButton: boolean = false
 
   constructor(private _router: Router) {
     _router.events.subscribe((val) => {
@@ -48,8 +44,8 @@ export class InputSearchComponent implements OnDestroy {
   }
 
   onValueChange(value: any): void {
-    this.showRemoveButton = this.value !== '' || this.value !== undefined
     this.value = value
+    this.showRemoveButton = this.value !== ''
   }
 
   handleKeyPress($event: any): void {
