@@ -21,4 +21,6 @@ Also the application has been deployed to a Firebase Hosting Server so you can a
         - https://wallapop-test.firebaseapp.com
         (notice that it's running on a free plan so once reached 250Mb/downloads per day won't work anymore)
 
-If not run `npm run serve` or `ng serve` to run it locally. By default will open port :4200 but feel free to use a custom one using --port flag.
+If not clone the project using `git clone https://github.com/danielolivier/wallapop.git`
+
+Go to downloaded project directory and run `npm run serve` or `ng serve` to run it locally. By default it will open port :4200 but feel free to use a custom one using --port flag.
