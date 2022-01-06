@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core'
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  Output,
+} from '@angular/core'
 import { faHeart, faTrashAlt } from '@fortawesome/free-regular-svg-icons'
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
 
@@ -15,7 +21,7 @@ export class ItemCardComponent {
   @Output() favouriteAction = new EventEmitter<Item>()
 
   selectedItem: Item = new Item()
-  mobileClass: boolean = true
+  mobileClass: boolean = false
   readonly icons = {
     likeIconOutlined: faHeart,
     likeIcon: faHeartSolid,
@@ -33,5 +39,14 @@ export class ItemCardComponent {
       item.favourite = !this.item?.favourite
     }
     this.favouriteAction.emit(item)
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    if (window.innerWidth < 700) {
+      this.mobileClass = true
+    } else {
+      this.mobileClass = false
+    }
   }
 }

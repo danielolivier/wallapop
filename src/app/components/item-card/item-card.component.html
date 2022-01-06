@@ -26,7 +26,7 @@
       [ngClass]="{ 'item-card__favourite-active': item.favourite }"
       (click)="saveDeleteFavourite(item)"
       [tooltip]="
-        !mobileClass
+        mobileClass
           ? ''
           : !item.favourite
           ? ('ITEM_CARD.add_favourite' | translate)
